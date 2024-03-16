@@ -1,38 +1,65 @@
-.App {
-  text-align: center;
+.body{
+    background-image: url(img/netflix-backgroundImage.jpg);
+    width: 100vw;
+    height: 100vh;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.brand-logo{
+    width: 200px;
+    height: 80px;
+    padding: 20px;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.SignIn-page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.SignIn-container{
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 40%;
+    height: fit-content;
+    background-color: rgba(0, 0, 0, 0.658);
 }
+.SignIn-form{
+    padding: 30px 50px;
 
-.App-link {
-  color: #61dafb;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.SignIn-form h1{
+    color: white;
+    font-size: 40px;
+}
+.SignIn-form input{
+    display: block;
+    width: 94%;
+    height: 50px;
+    margin-bottom: 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+    border-color: rgba(240, 248, 255, 0.596);
+    background-color: rgba(70, 68, 68, 0.603);
+    padding-left: 20px;
+    font-size: 15px;
+    color: rgba(240, 248, 255, 0.705);
+}
+.SignIn-form button{
+    width: 100%;
+    height: 50px;
+    border-style: none;
+    border-radius: 5px;
+    background-color: rgba(255, 0, 0, 0.795);
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.SignIn-form button:hover{
+    background-color: red;
+}
+.SignIn-or-SignUp{
+    color: white;
+}
+.SignIn-or-SignUp a{
+    text-decoration: underline;
+    cursor: pointer;
+    color: red;
 }
