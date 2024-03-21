@@ -3,6 +3,7 @@ import { validateSignInValues, validateSignUpValues } from "../utils/validate";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import Header from "./header";
@@ -16,7 +17,7 @@ const Login = () => {
   let email = useRef(null);
   let password = useRef(null);
 
-  // let dispatch=useDispatch();
+  let dispatch = useDispatch();
 
   let handleCheck = () => {
     let message = isSignInForm
@@ -53,6 +54,22 @@ const Login = () => {
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user;
+          updateProfile(auth.currentUser, {
+            displayName: name.current.value
+          })
+            .then(() => {
+              const { uid, email, displayName } = auth.currentUser;
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName
+                })
+              );
+            })
+            .catch((error) => {
+              setErrorMessage(error.message)
+            });
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -64,7 +81,6 @@ const Login = () => {
 
   let change = () => {
     setIsSignInForm(!isSignInForm);
-    // setErrorMessage(null);
   };
 
   return (
@@ -75,13 +91,14 @@ const Login = () => {
           <form onSubmit={(a) => a.preventDefault()} className="SignIn-form">
             <h1>{isSignInForm ? "Sign In" : "Sign Up"}</h1>
             {!isSignInForm && (
-              <input ref={name} type="text" placeholder="Enter Your Name" />
+              <input ref={name} type="text" placeholder="Enter Your Name" required/>
             )}
-            <input ref={email} type="email" placeholder="Enter Your Email" />
+            <input ref={email} type="email" placeholder="Enter Your Email" required/>
             <input
               ref={password}
               type="password"
               placeholder="Enter Your Password"
+              required
             />
             <p className="errorMessage">{errorMesssage}</p>
             <button type="submit" onClick={handleCheck}>
