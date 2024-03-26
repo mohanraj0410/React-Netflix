@@ -55,7 +55,7 @@ const Login = () => {
           // Signed up
           const user = userCredential.user;
           updateProfile(auth.currentUser, {
-            displayName: name.current.value
+            displayName: name.current.value,
           })
             .then(() => {
               const { uid, email, displayName } = auth.currentUser;
@@ -63,12 +63,12 @@ const Login = () => {
                 addUser({
                   uid: uid,
                   email: email,
-                  displayName: displayName
+                  displayName: displayName,
                 })
               );
             })
             .catch((error) => {
-              setErrorMessage(error.message)
+              setErrorMessage(error.message);
             });
         })
         .catch((error) => {
@@ -85,37 +85,49 @@ const Login = () => {
 
   return (
     <div className="body">
-      <Header />
-      <div className="SignIn-page">
-        <div className="SignIn-container">
-          <form onSubmit={(a) => a.preventDefault()} className="SignIn-form">
-            <h1>{isSignInForm ? "Sign In" : "Sign Up"}</h1>
-            {!isSignInForm && (
-              <input ref={name} type="text" placeholder="Enter Your Name" required/>
-            )}
-            <input ref={email} type="email" placeholder="Enter Your Email" required/>
-            <input
-              ref={password}
-              type="password"
-              placeholder="Enter Your Password"
-              required
-            />
-            <p className="errorMessage">{errorMesssage}</p>
-            <button type="submit" onClick={handleCheck}>
-              {isSignInForm ? "Sign In" : "Sign Up"}
-            </button>
-            <p className="SignIn-or-SignUp">
-              {isSignInForm ? (
-                <div>
-                  New to Netflix? <a onClick={change}>Sign Up</a> Now
-                </div>
-              ) : (
-                <div>
-                  Already registered? <a onClick={change}>Sign In</a> Now
-                </div>
+      <div className="background-color">
+        <Header />
+        <div className="SignIn-page">
+          <div className="SignIn-container">
+            <form onSubmit={(a) => a.preventDefault()} className="SignIn-form">
+              <h1>{isSignInForm ? "Sign In" : "Sign Up"}</h1>
+              {!isSignInForm && (
+                <input
+                  ref={name}
+                  type="text"
+                  placeholder="Enter Your Name"
+                  required
+                />
               )}
-            </p>
-          </form>
+              <input
+                ref={email}
+                type="email"
+                placeholder="Enter Your Email"
+                required
+              />
+              <input
+                ref={password}
+                type="password"
+                placeholder="Enter Your Password"
+                required
+              />
+              <p className="errorMessage">{errorMesssage}</p>
+              <button type="submit" onClick={handleCheck}>
+                {isSignInForm ? "Sign In" : "Sign Up"}
+              </button>
+              <p className="SignIn-or-SignUp">
+                {isSignInForm ? (
+                  <div>
+                    New to Netflix? <a onClick={change}>Sign Up</a> Now
+                  </div>
+                ) : (
+                  <div>
+                    Already registered? <a onClick={change}>Sign In</a> Now
+                  </div>
+                )}
+              </p>
+            </form>
+          </div>
         </div>
       </div>
     </div>

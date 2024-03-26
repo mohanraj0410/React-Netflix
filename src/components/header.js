@@ -48,11 +48,12 @@ const Header = () => {
         <div className="signIn-user">
           {user && (
             <>
+              <button className="GPT-Button">GPT Search</button>
+              <button className="signOut-Button" onClick={handleCheckSignOut}>sign out</button>
               <div className="signIn-profile">
                 <FaUser className="user-icon"/>
                 <p>{user.displayName}</p>
               </div>
-              <button className="signOut-Button" onClick={handleCheckSignOut}>sign out</button>
             </>
           )}
         </div>
